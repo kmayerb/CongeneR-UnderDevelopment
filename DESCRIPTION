@@ -1,0 +1,20 @@
+Package: CongeneR
+Type: Package
+Title: Reconcile PCB congener data with different co-elution patterns
+Version: 0.1.0
+Author: Koshlan Mayer-Blackwell
+Maintainer: Koshlan Mayer-Blackwell <koshlan@gmail.com>
+Description: EPA METHOD 1668 for Polychlorinated Biphenyls (PCBs) 
+    can be run on different GC columns in different labs 
+    creating data with different congener combinations.
+    This package reconciles PCB congener data with different 
+    co-elution paterns.
+License: GPL-2
+Encoding: UTF-8
+LazyData: true
+Imports: dplyr,
+    tidyr,
+    stringr,
+    ggplot2,
+    igraph,
+    magrittr
