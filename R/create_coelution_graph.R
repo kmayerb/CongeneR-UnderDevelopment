@@ -45,6 +45,8 @@ create_coelution_graph <- function(analyte_list,
   elutions = lapply(elutions, stringr::str_trim)
   elutions = lapply(elutions, function(i) sub(x = i, pattern = prefix, replacement = ""))
   elutions = lapply(elutions, function(i) as.numeric(i))
+  corrected_analyte_list <- analyte_list
+  corrected_analyte_list[[pattern_name]] <- sapply(elutions, function(i) paste(i,collapse = ","))
 
   # Create {node, node} graph file as dataframe
   l = list()
@@ -84,7 +86,7 @@ create_coelution_graph <- function(analyte_list,
     dplyr::summarise(PATTERN = paste(CONGENER, collapse = ","))
   df3 <- df %>% dplyr::left_join(df2, by = "CLUSTER") %>%
     dplyr::arrange(CONGENER)
-  df4 <- df3 %>% dplyr::left_join(analyte_list, by = "PATTERN")
+  df4 <- df3 %>% dplyr::left_join(corrected_analyte_list, by = "PATTERN")
 
   #if (verbose){
   #  message(" Output  <-  has $table and $graph objects" )
