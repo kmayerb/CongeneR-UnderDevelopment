@@ -7,7 +7,7 @@
 #' @export
 #'
 #' @examples
-coelute_aroclors <- function(coelution_object, database = c("Frame", "R")){
+coelute_aroclors <- function(coelution_object, database = "Frame"){
   if (database == "Frame"){
     coelution_object$table %>%
       dplyr::left_join(frame_congener_table, by ="CONGENER") %>%
