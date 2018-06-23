@@ -14,15 +14,16 @@ install_github('CongeneR',  username='koshlan')
 ```
 
 ## Some Examples
+![Aroclor1254 SPB-octyl column](/imaage/Aroclor1254.png)
+
 ```ruby
 #library(CongeneR)
 dev.tools::load_all(".")
-# Vingette Skelleton
 
+# Vingette Skelleton
 # The package contains some example congener samples (s1, s2) with different coelution patterns
 head(s1) # contains samples generated on a SPB-octyl column
 head(s2) # contains samples generated on a DB-5 column 
-head(s1)
 
 # The first step is generate a coelution graph for both types of samplse
 s1.elutions <- create_coelution_graph(s1)
@@ -54,4 +55,4 @@ fingerprint_plot_overlay(s1.plus.aroclors, sample = SAMPLE1)
 
 Author Contact
 --------------
-[www.pgwg.com](http://www.pgwg.com)
+[www.pgwg.com](http://www.pgwg.com/staff_key.html)
