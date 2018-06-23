@@ -92,5 +92,5 @@ create_coelution_graph <- function(analyte_list,
   #  message(" Output  <-  has $table and $graph objects" )
   #}
   # Outputs table and graph objects to a list
-  return(list(table= df4, graph = gx))
+  return(list(table= df4, graph = gx, results = corrected_analyte_list))
   }

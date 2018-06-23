@@ -1,7 +1,7 @@
 #' fingerprint_plot2
 #'
 #' @param df
-#' @param df_group
+#' @param sample
 #' @param ...
 #'
 #' @return
@@ -9,15 +9,21 @@
 #'
 #' @examples
 fingerprint_plot <-function(df,
-                            sample,
+                            sample =NULL,
+                            backdoor = NULL,
                             call = "PATTERN.y",
                             colors = c("#8dd3c7","#ffffb3","#bebada","#fb8072","#80b1d3","#fdb462","#b3de69","#fccde5","#d9d9d9"),
                             add_summary = TRUE,
                             cex.names = .5,
                             verbose = FALSE,
                             ...){
-
-  sample1 = as.character((substitute(sample)))
+  
+  if (!is.null(backdoor)){
+    sample1 = backdoor
+  }else{
+    sample1 = as.character((substitute(sample)))
+  }
+  
   barplot(df[[sample1]],
           names.arg = df[[call]],
           las = 2 ,
@@ -36,13 +42,23 @@ fingerprint_plot <-function(df,
 
 
 
-  expr <- dplyr::enquo(sample)
-  #expr <- dplyr::quo(sample)
-  df_group <- df %>%
-    dplyr::group_by(CLASS, CHLORINE) %>%
-    dplyr::summarise(SUM = sum(!!expr, na.rm = T) ) %>%
-    dplyr::arrange(CHLORINE)
 
+  if (!is.null(backdoor)){
+    df_group <- df %>%
+      dplyr::group_by(CLASS, CHLORINE) %>%
+      #dplyr::summarise(SUM = sum(!!expr, na.rm = T) ) %>%
+      dplyr::summarise(SUM = sum(!!rlang::sym(backdoor), na.rm = T) ) %>%
+      dplyr::arrange(CHLORINE)
+  }else{
+    expr <- dplyr::enquo(sample)
+    df_group <- df %>%
+      dplyr::group_by(CLASS, CHLORINE) %>%
+      dplyr::summarise(SUM = sum(!!expr, na.rm = T) ) %>%
+      #dplyr::summarise(SUM = sum(!!rlang::sym(backdoor), na.rm = T) ) %>%
+      dplyr::arrange(CHLORINE)
+  }
+
+  
   if(verbose){print(df_group)}
   total_sum <- sum(df_group$SUM)
   df_group$SUM <- 100*(df_group$SUM / total_sum)
