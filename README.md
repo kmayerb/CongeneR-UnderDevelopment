@@ -14,7 +14,7 @@ install_github('CongeneR',  username='koshlan')
 ```
 
 ## Some Examples
-![Aroclor1254 SPB-octyl column](/imaage/Aroclor1254.png)
+![Aroclor1254 SPB-octyl column](/image/Aroclor1254.png)
 
 ```ruby
 #library(CongeneR)
