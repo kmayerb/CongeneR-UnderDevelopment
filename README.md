@@ -15,6 +15,40 @@ install_github('CongeneR',  username='koshlan')
 
 ## Some Examples
 
+```ruby
+
+# The CongeneR package contains some example PCB congener samples (s1,s2,s3,s4,g4,r1) with different coelution patterns 
+
+# g4 is sample data from groundwater 
+head(g4)
+
+# create()
+g4.graph                 <- create(g4, sep = "/", prefix =  "C[A-Z][0-9]{1,2}-PCB-|CB-")
+r1.graph                 <- create(r1)
+
+# unify()
+g4.r1.unified_graph      <- unify(g4.graph, r1.graph)
+
+# reaggregate()
+g4.reaggregated_graph    <- reaggregate(g4.graph, g4.r1.unified)
+r1.reaggregated          <- reaggregate(r1.graph, g4.r1.unified)
+
+# merge_aroclor()
+g4.report                <- merge_aroclors(g4.reaggregated ,  g4.r1.unified )
+r1.report                <- merge_aroclors(r1.reaggregated ,  g4.r1.unified )
+
+# vizualize with fingerprint
+par(mfrow = c(4,1))
+fingerprint_plot(g4.report, sample = HL.MW.29S.OCT08, main = "SAMPLE MW-29S" )
+fingerprint_plot_overlay(r1.report, sample = R1248)
+fingerprint_plot(r1.report, sample = R1248, main = "Aroclor 1248 (Rushneck 2004)")
+fingerprint_plot(g4.report, sample = HL.MW.29S.OCT08, main = "SAMPLE MW-29S" )
+fingerprint_plot_overlay(r1.report, sample = R1242)
+fingerprint_plot(r1.report, sample = R1242, main = "Aroclor 1242 (Rushneck 2004)")
+```
+
+![Aroclor1248](image/AroclorExample1.png)
+
 
 ```ruby
 # The CongeneR package contains some example PCB congener samples (s1,s2,s3,s4) with different coelution patterns 
@@ -85,4 +119,5 @@ fingerprint_plot(r1.unifed.aroclors, sample = R1262, main = "Rushneck et al. Aro
 ![Aroclor1254 Comparisons](image/Aroclor1254Comparison.png)
 Author Contact
 --------------
+koshlan [at] pgwg.com
 [www.pgwg.com](http://www.pgwg.com/staff_key.html)

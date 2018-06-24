@@ -34,7 +34,7 @@ fingerprint_plot <-function(df,
           ...)
 
   df$SMALL <- NA
-  df$SMALL[df[[sample1]] < .05 & df[[sample1]] > 0 ] <- df[[call]][df[[sample1]] < .05 & df[[sample1]] > 0 ]
+  df$SMALL[df[[sample1]] < .05 & df[[sample1]] > 0.001 ] <- df[[call]][df[[sample1]] < .05 & df[[sample1]] > 0.001 ]
   text(seq_along(df[[call]]), df[[sample1]]+.25, labels = df$SMALL, cex = 0.7, pos = 3,  srt = 90)
   breaks<-which(diff(df$CHLORINE) == 1)
   abline(v = breaks, lty = 2)
