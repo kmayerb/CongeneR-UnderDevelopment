@@ -47,7 +47,7 @@ fingerprint_plot_overlay(r1.report, sample = R1242)
 fingerprint_plot(r1.report, sample = R1242, main = "Aroclor 1242 (Rushneck 2004)")
 ```
 
-![Aroclor1248](image/AroclorExample1.png)
+![AroclorExample1](image/AroclorExample1.png)
 
 
 ```ruby
