@@ -8,7 +8,10 @@
 #' @return unified graph list with table and igraph object
 #' @export
 unify_graphs <- function(graph1, graph2, verbose = TRUE){
-  # Check that graph1 and grpah 2 are both igraph objects
+  # cache inputs
+  cache_graph1 = graph1
+  cache_graph2 = graph2
+  # Check that graph1 and graph 2 are both igraph objects
   # or check if graph1$graph are graph2$graph are igraph objects
   # otherwise stop and ask user for correct input types
   if(! ( igraph::is.igraph(graph1) & igraph::is.igraph(graph2) ) ){
@@ -49,5 +52,11 @@ unify_graphs <- function(graph1, graph2, verbose = TRUE){
   #if (verbose){
   #  message("  Output <- unify_graphs()  has a $table and a $graph objects" )
   #}
-  return(list(table= df3, graph = g) )
+  return(list(table= df3, 
+              graph = g, 
+              result = cache_graph1$results, 
+              result2 = cache_graph2$results,
+              cache_graph  = cache_graph1,
+              cache_graph2 = cache_graph2
+              ) )
 }
