@@ -30,12 +30,12 @@ r1.graph                 <- create(r1)
 g4.r1.unified_graph      <- unify(g4.graph, r1.graph)
 
 # reaggregate()
-g4.reaggregated_graph    <- reaggregate(g4.graph, g4.r1.unified)
-r1.reaggregated          <- reaggregate(r1.graph, g4.r1.unified)
+g4.reaggregated          <- reaggregate(g4.graph, g4.r1.unified.graph)
+r1.reaggregated          <- reaggregate(r1.graph, g4.r1.unified.graph)
 
 # merge_aroclor()
-g4.report                <- merge_aroclors(g4.reaggregated ,  g4.r1.unified )
-r1.report                <- merge_aroclors(r1.reaggregated ,  g4.r1.unified )
+g4.report                <- merge_aroclors(g4.reaggregated ,  g4.r1.unified.graph )
+r1.report                <- merge_aroclors(r1.reaggregated ,  g4.r1.unified.graph )
 
 # vizualize with fingerprint
 par(mfrow = c(4,1))
