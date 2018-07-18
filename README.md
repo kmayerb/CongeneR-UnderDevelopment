@@ -4,13 +4,18 @@
 
 ## Installation
 
+If you are using R in R studio make sure you have devtools installed.
+
 Development version on [github](https://github.com/koshlan/CongeneR)
 ```ruby
 # development version
-library(devtools)
+# Open the zip file in a new folder.
+# With that folder as your working directory
 
-# install 'CongeneR'
-install_github('CongeneR',  username='koshlan')
+library(devtools)
+devtools::load_all(“.”)
+
+# you should see “loading CongneR” in the console, that means that all the functions are loaded and ready to use
 ```
 
 ## Some Examples
